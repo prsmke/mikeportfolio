@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mike Tancontian — Aspiring Software Engineer</title>
+<meta name="description" content="Mike Tancontian — Fresh BSIT Graduate and Aspiring Software Engineer and Graphic Designer. C#, Java, C++, PHP, HTML, CSS, JavaScript.">
+<meta name="author" content="Mike Tancontian">
+<meta name="theme-color" content="#0b0b0c">
+<link rel="icon" type="image/png" href="profile.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root[data-theme="dark"] {
+  --bg: #0b0b0c;
+  --bg-alt: #101012;
+  --surface: #141416;
+  --surface-2: #1a1a1d;
+  --line: #26262b;
+  --line-2: #35353c;
+  --text: #f2f2f3;
+  --muted: #9a9aa4;
+  --dim: #6c6c76;
+  --invert-bg: #f2f2f3;
+  --invert-text: #0b0b0c;
+  --shadow: 0 18px 50px rgba(0,0,0,.55);
+  --grid: rgba(255,255,255,.028);
+  --img-bg: #101013;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg: #fbfbfc;
+  --bg-alt: #f2f2f4;
+  --surface: #ffffff;
+  --surface-2: #f6f6f7;
+  --line: #e5e5e9;
+  --line-2: #d2d2d8;
+  --text: #0b0b0c;
+  --muted: #62626c;
+  --dim: #8c8c96;
+  --invert-bg: #0b0b0c;
+  --invert-text: #fbfbfc;
+  --shadow: 0 16px 44px rgba(11,11,12,.10);
+  --grid: rgba(0,0,0,.035);
+  --img-bg: #ececed;
+  color-scheme: light;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  transition: background .3s ease, color .3s ease;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none;
+  z-index: 0;
+}
+.wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+.mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+.skip {
+  position: absolute; left: -999px; top: 0; z-index: 200;
+  background: var(--invert-bg); color: var(--invert-text); padding: 10px 16px; border-radius: 0 0 8px 0;
+}
+.skip:focus { left: 0; }
+
+/* ---------- NAV ---------- */
+header.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-in { display: flex; align-items: center; gap: 16px; height: 66px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -.01em; }
+.brand-pic {
+  width: 34px; height: 34px; border-radius: 50%; object-fit: cover; display: block;
+  border: 1px solid var(--line-2);
+}
+.brand small { display: block; font-size: 11px; color: var(--dim); font-weight: 400; letter-spacing: .02em; }
+nav.links { margin-left: auto; display: flex; align-items: center; gap: 4px; }
+nav.links a {
+  padding: 7px 11px; border-radius: 7px; font-size: 14px; color: var(--muted);
+  transition: color .2s ease, background .2s ease;
+}
+nav.links a:hover { color: var(--text); background: var(--surface-2); }
+nav.links a.active { color: var(--text); background: var(--surface-2); }
+.theme-btn {
+  margin-left: 8px; width: 38px; height: 38px; display: grid; place-items: center;
+  border: 1px solid var(--line); background: var(--surface); color: var(--text);
+  border-radius: 9px; cursor: pointer; transition: border-color .2s ease, transform .2s ease;
+}
+.theme-btn:hover { border-color: var(--line-2); transform: translateY(-1px); }
+.theme-btn svg { width: 17px; height: 17px; }
+[data-theme="dark"] .icon-sun, [data-theme="light"] .icon-moon { display: none; }
+
+/* ---------- HERO ---------- */
+.hero { padding: 76px 0 64px; }
+.hero-grid { display: grid; grid-template-columns: 1fr; gap: 44px; justify-items: center; text-align: center; }
+.hero-core { width: 100%; }
+.profile-block { display: flex; flex-direction: column; align-items: center; }
+.profile-ring {
+  width: 160px; height: 160px; margin: 26px auto 4px; border-radius: 50%;
+  padding: 5px; background: var(--surface); border: 1px solid var(--line-2);
+  box-shadow: var(--shadow);
+}
+.profile-ring img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
+.term-wrap { width: 100%; max-width: 620px; }
+.pill {
+  display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted);
+  border: 1px solid var(--line); background: var(--surface); padding: 5px 12px; border-radius: 999px;
+}
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text); animation: pulse 2.4s infinite; }
+@keyframes pulse { 0%,100% { opacity: .35 } 50% { opacity: 1 } }
+h1 {
+  margin: 18px 0 0; font-size: clamp(32px, 5vw, 46px); line-height: 1.08;
+  letter-spacing: -.03em; font-weight: 700;
+}
+.rotator { color: var(--muted); font-weight: 500; }
+.rotator::after { content: "|"; margin-left: 2px; color: var(--dim); animation: caret 1.1s steps(1) infinite; }
+@keyframes caret { 50% { opacity: 0 } }
+.headline { margin-top: 14px; margin-inline: auto; font-size: 17px; color: var(--muted); max-width: 44ch; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 10px;
+  font-size: 14.5px; font-weight: 500; border: 1px solid var(--line-2); color: var(--text);
+  background: transparent; cursor: pointer; transition: transform .18s ease, background .2s ease, border-color .2s ease;
+}
+.btn:hover { transform: translateY(-2px); border-color: var(--text); }
+.btn.primary { background: var(--invert-bg); color: var(--invert-text); border-color: var(--invert-bg); }
+.btn svg { width: 15px; height: 15px; }
+
+/* terminal */
+.term {
+  border: 1px solid var(--line); border-radius: 14px; background: var(--surface);
+  box-shadow: var(--shadow); overflow: hidden;
+}
+.term-bar { display: flex; align-items: center; gap: 7px; padding: 11px 14px; border-bottom: 1px solid var(--line); background: var(--surface-2); }
+.term-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--line-2); display: block; }
+.term-bar span { margin-left: 8px; font-size: 11.5px; color: var(--dim); }
+.term-body { padding: 16px; font-size: 13px; line-height: 1.85; min-height: 208px; }
+.term-body .ln { white-space: pre-wrap; word-break: break-word; }
+.term-body .cmd { color: var(--text); }
+.term-body .out { color: var(--muted); }
+.term-body .cursor { display: inline-block; width: 8px; height: 15px; background: var(--text); vertical-align: -2px; animation: blink 1.05s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0 } }
+
+/* ---------- MARQUEE ---------- */
+.marquee { border-block: 1px solid var(--line); background: var(--bg-alt); overflow: hidden; padding: 13px 0; }
+.marquee-track { display: flex; width: max-content; animation: slide 34s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee span { display: inline-flex; align-items: center; gap: 22px; padding-right: 22px; font-size: 13px; color: var(--dim); }
+@keyframes slide { to { transform: translateX(-50%) } }
+
+/* ---------- SECTIONS ---------- */
+section { padding: 84px 0; }
+section.alt { background: var(--bg-alt); border-block: 1px solid var(--line); }
+.eyebrow { display: flex; align-items: center; gap: 10px; font-size: 12.5px; color: var(--dim); letter-spacing: .14em; text-transform: uppercase; }
+.eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--line-2); }
+h2 { margin-top: 12px; font-size: clamp(26px, 3.6vw, 36px); letter-spacing: -.03em; line-height: 1.15; }
+.sub { margin-top: 12px; color: var(--muted); max-width: 62ch; }
+
+/* ---------- ABOUT ---------- */
+.about-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 40px; margin-top: 34px; }
+.about-grid p { color: var(--muted); margin-bottom: 14px; }
+.about-grid strong { color: var(--text); font-weight: 600; }
+.mind { display: grid; gap: 12px; align-content: start; }
+.mind-card { border: 1px solid var(--line); border-radius: 12px; padding: 16px; background: var(--surface); transition: border-color .2s ease, transform .2s ease; }
+.mind-card:hover { border-color: var(--line-2); transform: translateY(-2px); }
+.mind-card b { display: block; font-size: 15px; }
+.mind-card small { color: var(--dim); font-size: 13px; }
+.facts { display: grid; gap: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; margin-top: 26px; background: var(--surface); }
+.fact { display: grid; grid-template-columns: 168px 1fr; gap: 12px; padding: 13px 16px; border-bottom: 1px solid var(--line); }
+.fact:last-child { border-bottom: 0; }
+.fact dt { font-size: 13px; color: var(--dim); }
+.fact dd { font-size: 14.5px; }
+
+/* ---------- SKILLS ---------- */
+.skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(258px, 1fr)); gap: 16px; margin-top: 34px; }
+.skill-card { border: 1px solid var(--line); border-radius: 13px; background: var(--surface); padding: 20px; }
+.skill-card header { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.skill-card h3 { font-size: 15px; letter-spacing: -.01em; }
+.level { font-size: 11px; color: var(--dim); border: 1px solid var(--line); padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
+.tag {
+  font-size: 12.5px; padding: 5px 10px; border-radius: 7px; border: 1px solid var(--line);
+  background: var(--surface-2); color: var(--muted); transition: color .18s ease, border-color .18s ease;
+}
+.tag:hover { color: var(--text); border-color: var(--line-2); }
+.skill-note { margin-top: 16px; font-size: 13px; color: var(--dim); }
+.learn-list { display: grid; gap: 10px; margin-top: 16px; }
+.learn-list li { list-style: none; display: flex; gap: 10px; font-size: 14px; color: var(--muted); }
+.learn-list li::before { content: "\2192"; color: var(--dim); }
+
+/* ---------- SHOWCASE / SLIDER ---------- */
+.showcase { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 32px; }
+.slider { position: relative; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); overflow: hidden; box-shadow: var(--shadow); }
+.viewport { overflow: hidden; }
+.track { display: flex; transition: transform .62s cubic-bezier(.22,.72,.2,1); }
+.slide { min-width: 100%; display: grid; grid-template-columns: 1.25fr .75fr; }
+.slide-figure {
+  position: relative; background: var(--img-bg); border-right: 1px solid var(--line);
+  min-height: 380px; display: grid; place-items: center; overflow: hidden;
+}
+.slide-figure::before {
+  content: ""; position: absolute; inset: 0;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.slide-figure img { position: relative; width: 100%; height: 100%; object-fit: contain; padding: 14px; }
+.slide-figure.placeholder::after {
+  content: attr(data-fallback); position: relative; color: var(--dim);
+  font-family: "JetBrains Mono", monospace; font-size: 12.5px; text-align: center; padding: 0 20px;
+}
+.slide-body { padding: 26px; display: flex; flex-direction: column; justify-content: center; }
+.slide-body .idx { font-size: 12px; color: var(--dim); }
+.slide-body h3 { margin-top: 8px; font-size: 20px; letter-spacing: -.02em; line-height: 1.25; color: var(--text); font-weight: 700; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.slide-body p { margin-top: 10px; color: var(--muted); font-size: 14.5px; }
+.slide-body .tags { margin-top: 16px; }
+.slide-body .note { margin-top: 14px; font-size: 12.5px; color: var(--dim); }
+.slider-ui { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-top: 1px solid var(--line); background: var(--surface-2); }
+.arrow {
+  width: 36px; height: 36px; border-radius: 9px; border: 1px solid var(--line-2); background: var(--surface);
+  color: var(--text); display: grid; place-items: center; cursor: pointer; transition: transform .18s ease, border-color .18s ease;
+}
+.arrow:hover { transform: translateY(-1px); border-color: var(--text); }
+.arrow svg { width: 15px; height: 15px; }
+.dots { display: flex; gap: 7px; margin-left: 4px; }
+.dots button { width: 7px; height: 7px; padding: 0; border-radius: 50%; border: 0; background: var(--line-2); cursor: pointer; transition: width .25s ease, background .25s ease; }
+.dots button[aria-selected="true"] { width: 22px; border-radius: 4px; background: var(--text); }
+.counter { margin-left: auto; font-size: 12.5px; color: var(--dim); }
+
+/* design showcase tabs */
+.design-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.design-tab {
+  padding: 9px 15px; border-radius: 999px; border: 1px solid var(--line-2);
+  background: var(--surface); color: var(--muted);
+  font: inherit; font-size: 13.5px; font-weight: 500; cursor: pointer;
+  transition: color .2s ease, border-color .2s ease, background .2s ease;
+}
+.design-tab:hover { color: var(--text); border-color: var(--text); }
+.design-tab[aria-selected="true"] { background: var(--invert-bg); color: var(--invert-text); border-color: var(--invert-bg); }
+.slide.is-hidden { display: none; }
+
+/* project cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(268px, 1fr)); gap: 16px; margin-top: 30px; }
+.card {
+  text-align: left; border: 1px solid var(--line); border-radius: 13px; background: var(--surface);
+  padding: 20px; cursor: pointer; transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+.card:hover { transform: translateY(-3px); border-color: var(--line-2); }
+.card[aria-selected="true"] { border-color: var(--text); background: var(--surface-2); }
+.card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.card-top .no { font-size: 12px; color: var(--dim); }
+.card h3 { margin-top: 10px; font-size: 16px; letter-spacing: -.015em; color: var(--text); font-weight: 650; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+.card p { margin-top: 8px; font-size: 13.5px; color: var(--muted); }
+.card .tags { margin-top: 14px; }
+.card .view { margin-top: 14px; font-size: 13px; color: var(--dim); display: inline-flex; align-items: center; gap: 6px; }
+.card:hover .view { color: var(--text); }
+.card .view svg { width: 13px; height: 13px; transition: transform .2s ease; }
+.card:hover .view svg { transform: translateX(3px); }
+
+/* ---------- TIMELINE / LEARNING ---------- */
+.split { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 34px; }
+.panel { border: 1px solid var(--line); border-radius: 13px; background: var(--surface); padding: 22px; }
+.panel h3 { font-size: 16px; letter-spacing: -.015em; }
+.panel .row { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
+.panel .row:last-child { border-bottom: 0; padding-bottom: 0; }
+.panel .row b { font-weight: 500; min-width: 116px; }
+.panel .row span { color: var(--muted); }
+
+/* ---------- CONTACT ---------- */
+.contact {
+  border: 1px solid var(--line); border-radius: 16px; background: var(--surface);
+  padding: 42px 30px; text-align: center; margin-top: 34px;
+}
+.contact h2 { font-size: clamp(24px, 3.4vw, 34px); }
+.contact p { color: var(--muted); margin-top: 12px; }
+.contact .hero-cta { justify-content: center; }
+footer { border-top: 1px solid var(--line); padding: 22px 0; margin-top: 0; }
+.foot-in { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 13px; color: var(--dim); }
+.foot-in .sp { margin-left: auto; display: flex; gap: 14px; }
+.foot-in a:hover { color: var(--text); }
+.totop { position: fixed; right: 18px; bottom: 18px; z-index: 90; opacity: 0; pointer-events: none; transition: opacity .25s ease, transform .25s ease; }
+.totop.on { opacity: 1; pointer-events: auto; }
+.totop:hover { transform: translateY(-2px); }
+
+/* ---------- CONTACT DIRECT MESSAGE ---------- */
+.dm { margin-top: 34px; max-width: 660px; margin-inline: auto; text-align: left; }
+.dm-title { font-size: 13px; color: var(--dim); letter-spacing: .12em; text-transform: uppercase; text-align: center; margin-bottom: 18px; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field { display: grid; gap: 7px; margin-bottom: 12px; }
+.field label { font-size: 13px; color: var(--muted); font-weight: 500; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.field .count { font-size: 11.5px; color: var(--dim); }
+.field input, .field textarea {
+  width: 100%; padding: 11px 13px; border-radius: 10px; font: inherit; font-size: 14.5px;
+  border: 1px solid var(--line-2); background: var(--bg-alt); color: var(--text);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.field textarea { resize: vertical; min-height: 132px; line-height: 1.6; }
+.field input::placeholder, .field textarea::placeholder { color: var(--dim); }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--text); box-shadow: 0 0 0 3px color-mix(in srgb, var(--text) 14%, transparent); }
+.form-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 18px; }
+.dm-note { margin-top: 14px; font-size: 12.5px; color: var(--dim); text-align: center; }
+.socials { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 26px; padding-top: 24px; border-top: 1px solid var(--line); }
+
+/* ---------- REVEAL ---------- */
+.reveal { opacity: 0; transform: translateY(16px); }
+.reveal.in { opacity: 1; transform: none; transition: opacity .65s ease, transform .65s cubic-bezier(.2,.7,.2,1); }
+
+@media (max-width: 900px) {
+  .hero-grid, .about-grid, .slide { grid-template-columns: 1fr; }
+  .slide-figure { border-right: 0; border-bottom: 1px solid var(--line); min-height: 260px; }
+  nav.links a { padding: 7px 8px; font-size: 13px; }
+}
+@media (max-width: 620px) {
+  nav.links { display: none; }
+  .hero { padding: 46px 0 44px; }
+  section { padding: 62px 0; }
+  .fact { grid-template-columns: 1fr; gap: 2px; }
+  .panel .row { flex-direction: column; gap: 2px; }
+  .field-row { grid-template-columns: 1fr; }
+  .profile-ring { width: 140px; height: 140px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">
+      <img class="brand-pic" src="profile.png" alt="Mike Tancontian profile photo" width="34" height="34">
+      <span>Mike Tancontian<small>BSIT &middot; Aspiring Software Engineer</small></span>
+    </a>
+    <nav class="links" aria-label="Section navigation">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#designs">Designs</a>
+      <a href="#education">Education</a>
+      <a href="#learning">Learning</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-btn" id="theme" type="button" aria-label="Toggle colour theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+<span id="top"></span>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-core">
+      <span class="pill"><i class="dot"></i> Open to junior &amp; entry-level roles</span>
+      <div class="profile-block">
+        <div class="profile-ring">
+          <img src="profile.png" alt="Profile photo of Mike Tancontian" width="160" height="160">
+        </div>
+        <h1>Mike Tancontian</h1>
+        <p class="headline"><span class="rotator" id="rot"></span></p>
+      </div>
+    </div>
+
+    <div class="term-wrap">
+      <div class="term" aria-hidden="true">
+        <div class="term-bar"><i></i><i></i><i></i><span>mike@portfolio:~</span></div>
+        <div class="term-body mono" id="term"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track mono" id="mq"></div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">01 &mdash; About</p>
+      <h2>A fresh graduate building real things</h2>
+      <div class="about-grid">
+        <div>
+          <p>I'm <strong>Mike Tancontian</strong>, a <strong>Bachelor of Science in Information Technology</strong> graduate. My interest sits where programming meets visual design &mdash; I like understanding how a system works <em>and</em> how it should look while you use it.</p>
+          <p>Most of what I've built so far came from coursework and self-directed practice: desktop applications in <strong>C#</strong> and <strong>Java</strong>, <strong>C++</strong> exercises, <strong>PHP</strong> and web work with <strong>HTML</strong>, <strong>CSS</strong> and <strong>JavaScript</strong>, plus layout and visual studies in <strong>Adobe Illustrator</strong>, <strong>Photoshop</strong> and <strong>Canva</strong>.</p>
+          <p>I'm at the <strong>beginner-to-entry level</strong> and I'm honest about that. What I do have is consistency &mdash; I keep practising, I keep shipping small finished projects, and I keep learning the parts I don't understand yet. I'm looking for a team where I can grow into a Software Engineer role.</p>
+        </div>
+        <div class="mind">
+          <div class="mind-card"><b>Perseverance</b><small>Problems rarely solve themselves. I keep going, debug the line, and try again.</small></div>
+          <div class="mind-card"><b>Continuous Learning</b><small>New tutorials, new small builds, new concepts — every week, on purpose.</small></div>
+          <div class="mind-card"><b>Design Eye</b><small>Graphic design background: spacing, contrast and hierarchy matter to me in an interface.</small></div>
+        </div>
+      </div>
+      <dl class="facts reveal">
+        <div class="fact"><dt>Name</dt><dd>Mike Tancontian</dd></div>
+        <div class="fact"><dt>Headline</dt><dd>Fresh BSIT Graduate &bull; Aspiring Software Engineer and Graphic Designer</dd></div>
+        <div class="fact"><dt>Education</dt><dd>Bachelor of Science in Information Technology (BSIT)</dd></div>
+        <div class="fact"><dt>Focus</dt><dd>Software Development &amp; Multimedia Art / Graphic Design</dd></div>
+        <div class="fact"><dt>GitHub</dt><dd><a href="https://github.com/prsmke" target="_blank" rel="noopener">github.com/prsmke</a></dd></div>
+        <div class="fact"><dt>Email</dt><dd><a href="mailto:miketancontian2nd@gmail.com">miketancontian2nd@gmail.com</a></dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="alt">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">02 &mdash; Skills</p>
+      <h2>Technologies I've worked with</h2>
+      <p class="sub">These are the tools I've actually used in coursework and personal practice. My level is <strong>beginner / entry-level</strong> &mdash; comfortable reading and writing code with them, still learning depth.</p>
+
+      <div class="skill-grid">
+        <div class="skill-card">
+          <header><h3>Programming Languages</h3><span class="level">learning</span></header>
+          <div class="tags">
+            <span class="tag mono">C++</span><span class="tag mono">C#</span><span class="tag mono">Java</span>
+            <span class="tag mono">PHP</span><span class="tag mono">JavaScript</span>
+          </div>
+          <p class="skill-note">Core study languages from my degree and personal practice.</p>
+        </div>
+
+        <div class="skill-card">
+          <header><h3>Web Technologies</h3><span class="level">learning</span></header>
+          <div class="tags">
+            <span class="tag mono">HTML</span><span class="tag mono">CSS</span><span class="tag mono">JavaScript</span>
+          </div>
+          <p class="skill-note">Building layouts, styling interfaces and adding interactivity by hand.</p>
+        </div>
+
+        <div class="skill-card">
+          <header><h3>Desktop &amp; Frameworks</h3><span class="level">learning</span></header>
+          <div class="tags">
+            <span class="tag mono">.NET WinForms</span><span class="tag mono">Java Swing</span><span class="tag mono">Guna UI2</span><span class="tag mono">Git</span>
+          </div>
+          <p class="skill-note">Event-driven desktop applications and version control.</p>
+        </div>
+
+        <div class="skill-card">
+          <header><h3>Design &amp; Graphic Tools</h3><span class="level">learning</span></header>
+          <div class="tags">
+            <span class="tag mono">Adobe Illustrator</span><span class="tag mono">Photoshop</span><span class="tag mono">Canva</span><span class="tag mono">Pinterest</span>
+          </div>
+          <p class="skill-note">Layout, vector work, mockups and visual research for design briefs.</p>
+        </div>
+
+        <div class="skill-card">
+          <header><h3>How I work</h3><span class="level">practicing</span></header>
+          <div class="tags">
+            <span class="tag mono">VS Code</span><span class="tag mono">Visual Studio</span><span class="tag mono">NetBeans</span>
+            <span class="tag mono">Figma</span><span class="tag mono">Chrome DevTools</span>
+          </div>
+          <p class="skill-note">Editor-first workflow; testing and fixing directly in the running app.</p>
+        </div>
+
+        <div class="skill-card">
+          <header><h3>Currently learning</h3><span class="level">in progress</span></header>
+          <ul class="learn-list">
+            <li>Git &amp; GitHub workflow — commits, branches, pull requests</li>
+            <li>OOP fundamentals in C++ and Java, applied properly</li>
+            <li>Data structures and basic algorithms with practice problems</li>
+            <li>Database fundamentals and SQL for a future data layer</li>
+            <li>Figma fundamentals for UI/UX handoff</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">03 &mdash; Sample Projects</p>
+      <h2>Things I have built</h2>
+      <p class="sub">Academic and personal builds — mostly desktop applications. Select any project below to open it in the showcase.</p>
+    </div>
+
+    <div class="showcase reveal" id="showcase">
+      <div class="slider" id="slider">
+        <div class="viewport">
+          <div class="track" id="track">
+
+            <article class="slide" data-title="St. John Paul II College Enrollment System" data-fallback="Add a screenshot of the Enrollment System dashboard">
+              <div class="slide-figure" data-fallback="Add a screenshot of the Enrollment System dashboard">
+                <img src="Enrollment%20System.png" alt="Login screen of the St. John Paul II College Enrollment System" loading="lazy">
+              </div>
+              <div class="slide-body">
+                <span class="idx mono">01 / Academic Project</span>
+                <h3>St. John Paul II College Enrollment System</h3>
+                <p>A desktop enrollment application built for our school's registrar workflow: sign in, browse eight programmes, and submit student records with personal information, emergency contact and a photo.</p>
+                <div class="tags"><span class="tag mono">C#</span><span class="tag mono">.NET WinForms</span><span class="tag mono">Guna UI2</span><span class="tag mono">DataGridView</span></div>
+                <p class="note">Built as a course project. Records are held in memory during a session; a real database layer is my next learning step.</p>
+              </div>
+            </article>
+
+            <article class="slide" data-title="Simple POS — Point-of-Sale Prototype" data-fallback="Add a screenshot of the POS window">
+              <div class="slide-figure" data-fallback="Add a screenshot of the POS window">
+                <img src="simple%20Pos.png" alt="Point-of-sale interface with menu items and a cart" loading="lazy">
+              </div>
+              <div class="slide-body">
+                <span class="idx mono">02 / Personal Project</span>
+                <h3>Simple POS</h3>
+                <p>A Java point-of-sale prototype: clickable menu cards, a cart table that merges quantities, automatic totals, cash and balance calculation, and a printable receipt panel.</p>
+                <div class="tags"><span class="tag mono">Java</span><span class="tag mono">Swing</span><span class="tag mono">JTable</span><span class="tag mono">NetBeans</span></div>
+                <p class="note">A self-directed build to practise Swing layouts, event handling and money arithmetic with formatted output.</p>
+              </div>
+            </article>
+
+            <article class="slide" data-title="SPARK — Login and Signup UI Prototype" data-fallback="Add a screenshot of the SPARK login screen">
+              <div class="slide-figure" data-fallback="Add a screenshot of the SPARK login screen">
+                <img src="spark.png" alt="SPARK login interface with branding panel and sign-in form" loading="lazy">
+              </div>
+              <div class="slide-body">
+                <span class="idx mono">03 / UI / UX Study</span>
+                <h3>SPARK — Interface Prototype</h3>
+                <p>A login and signup interface study: split layout, branding panel, working field focus and password masking, built to practise visual hierarchy and Swing layout management.</p>
+                <div class="tags"><span class="tag mono">Java</span><span class="tag mono">Swing</span><span class="tag mono">Layout Design</span></div>
+                <p class="note">A UI/UX exercise first, code second — the point was the composition, spacing and contrast.</p>
+              </div>
+            </article>
+
+            <article class="slide" data-title="This Portfolio" data-fallback="Add a screenshot of the portfolio website">
+              <div class="slide-figure" data-fallback="Add a screenshot of the portfolio website">
+                <img src="web%20portfolio.png" alt="Screenshot of this developer portfolio website" loading="lazy">
+              </div>
+              <div class="slide-body">
+                <span class="idx mono">04 / Web Project</span>
+                <h3>Developer Portfolio Website</h3>
+                <p>This site. A single hand-written HTML file with light and dark themes, a sliding project showcase, scroll reveals and a typewriter intro — no frameworks, no build step.</p>
+                <div class="tags"><span class="tag mono">HTML</span><span class="tag mono">CSS</span><span class="tag mono">JavaScript</span><span class="tag mono">Responsive</span></div>
+                <p class="note">Written by hand to practise semantic markup, CSS custom properties and small vanilla JavaScript components.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+        <div class="slider-ui">
+          <button class="arrow prev" type="button" aria-label="Previous project">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18 9 12l6-6"/></svg>
+          </button>
+          <button class="arrow next" type="button" aria-label="Next project">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+          </button>
+          <div class="dots" id="dots" role="tablist" aria-label="Choose project"></div>
+          <span class="counter mono" id="counter">01 / 04</span>
+        </div>
+      </div>
+
+      <div class="cards" id="cards" role="tablist" aria-label="Sample projects">
+
+        <button class="card" type="button" role="tab" data-go="0" aria-selected="true">
+          <div class="card-top"><span class="no mono">01</span><span class="level">Academic</span></div>
+          <h3>College Enrollment System</h3>
+          <p>C# Windows Forms enrollment app with login, eight programmes and student record tables.</p>
+          <div class="tags"><span class="tag mono">C#</span><span class="tag mono">WinForms</span><span class="tag mono">Guna UI2</span></div>
+          <span class="view">Open in showcase <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </button>
+
+        <button class="card" type="button" role="tab" data-go="1" aria-selected="false">
+          <div class="card-top"><span class="no mono">02</span><span class="level">Personal</span></div>
+          <h3>Simple POS</h3>
+          <p>Java Swing point-of-sale prototype with menu cards, cart, totals and receipt output.</p>
+          <div class="tags"><span class="tag mono">Java</span><span class="tag mono">Swing</span><span class="tag mono">JTable</span></div>
+          <span class="view">Open in showcase <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </button>
+
+        <button class="card" type="button" role="tab" data-go="2" aria-selected="false">
+          <div class="card-top"><span class="no mono">03</span><span class="level">UI / UX</span></div>
+          <h3>SPARK Interface Prototype</h3>
+          <p>Login and signup UI study focused on composition, spacing and visual hierarchy.</p>
+          <div class="tags"><span class="tag mono">Java</span><span class="tag mono">Swing</span><span class="tag mono">Layout</span></div>
+          <span class="view">Open in showcase <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </button>
+
+        <button class="card" type="button" role="tab" data-go="3" aria-selected="false">
+          <div class="card-top"><span class="no mono">04</span><span class="level">Web</span></div>
+          <h3>Developer Portfolio</h3>
+          <p>This single-file site: dual theme, sliding showcase, scroll reveals, vanilla JS.</p>
+          <div class="tags"><span class="tag mono">HTML</span><span class="tag mono">CSS</span><span class="tag mono">JS</span></div>
+          <span class="view">Open in showcase <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </button>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="designs">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">04 &mdash; Designs</p>
+      <h2>Graphic design work</h2>
+      <p class="sub">One container, three design sets &mdash; Hook by Stella, Intramurals and Jersey. Switch between them with the buttons.</p>
+    </div>
+
+    <div class="showcase design-showcase reveal" id="design-showcase">
+      <div class="design-tabs" role="tablist" aria-label="Design categories">
+        <button class="design-tab" type="button" role="tab" data-set="hook" aria-selected="true">Hook by Stella</button>
+        <button class="design-tab" type="button" role="tab" data-set="intramurals" aria-selected="false">Intramurals</button>
+        <button class="design-tab" type="button" role="tab" data-set="jersey" aria-selected="false">Jersey</button>
+      </div>
+
+      <div class="slider" id="design-slider">
+        <div class="viewport">
+          <div class="track">
+
+            <article class="slide" data-set="hook" data-title="Stella Sunberry" data-fallback="Add a screenshot of Stella Sunberry">
+              <div class="slide-figure" data-fallback="Add a screenshot of Stella Sunberry">
+                <img src="Hook%20by%20stella/StellaSunberry.png" alt="Stella Sunberry design for Hook by Stella" loading="lazy">
+              </div>
+              <div class="slide-body">
+                <span class="idx mono">01 / Hook by Stella</span>
+                <h3>Stella Sunberry</h3>
+                <p>Sunberry edition of the Hook by Stella series &mdash; warm palette and centered layout.</p>
+                <div class="tags"><span class="tag mono">Photoshop</span><span class="tag mono">Layout</span></div>
+                <p class="note">Sample design from the Hook by Stella set.</p>
+              </div>
+            </article>
+
+            <article class="slide" data-set="hook" data-title="Stella Lilylamp" data-fallback="Add a screenshot of Stella Lilylamp">
+              <div class="slide-figure" data-fallback="Add a screenshot of Stella Lilylamp">
+                <img src="Hook%20by%20stella/StellaLilylamp.png" alt="Stella Lilylamp design for Hook by Stella" loading="lazy">
+              </div>
+              <div class="slide-body">
+                <span class="idx mono">02 / Hook by Stella</span>
+                <h3>Stella Lilylamp</h3>
+                <p>Lilylamp edition of the series &mdash; soft lighting mood and balanced type.</p>
+                <div class="tags"><span class="tag mono">Photoshop</span><span class="tag mono">Layout</span></div>
+                <p class="note">Sample design from the Hook by Stella set.</p>
+              </div>
+            </article>
+
+            <article class="slide" data-set="hook" data-title="Stella BloomLoop" data-fallback="Add a screenshot of Stella BloomLoop">
+              <div class="slide-figure" data-fallback="Add a screenshot of Stella BloomLoop">
+                <img src="Hook%20by%20stella/StellaBloomLoop.png" alt="Stella BloomLoop design for Hook by Stella" loading="lazy">
+              </div>
+              <div class="slide-body">
+                <span class="idx mono">03 / Hook by Stella</span>
+                <h3>Stella BloomLoop</h3>
+                <p>BloomLoop edition of the series &mdash; looping floral motif and fresh color story.</p>
+                <div class="tags"><span class="tag mono">Photoshop</span><span class="tag mono">Layout</span></div>
+                <p class="note">Sample design from the Hook by Stella set.</p>
+              </div>
+            </article>
+
+            <article class="slide" data-set="hook" data-title="Hook by Stella Logo" data-fallback="Add a screenshot of the Hook by Stella logo">
+              <div class="slide-figure" data-fallback="Add a screenshot of the Hook by Stella logo">
+                <img src="Hook%20by%20stella/Hookbystella%20logo.png" alt="Hook by Stella brand logo" loading="lazy">
+              </div>
+              <div class="slide-body">
+                <span class="idx mono">04 / Hook by Stella</span>
+                <h3>Hook by Stella Logo</h3>
+                <p>The Hook by Stella brand mark &mdash; clean and scalable for print and social.</p>
+                <div class="tags"><span class="tag mono">Logo</span><span class="tag mono">Branding</span></div>
+                <p class="note">Brand logo for the series.</p>
+              </div>
+            </article>
+
+            <article class="slide" data-set="intramurals" data-title="Intramural Pubmat" data-fallback="Add a screenshot of the intramural pubmat">
+              <div class="slide-figure" data-fallback="Add a screenshot of the intramural pubmat">
+                <img src="Intramurals/intramural%20pubmat.png" alt="Intramural publicity material design" loading="lazy">
+              </div>
+              <div class="slide-body">
+                <span class="idx mono">01 / Intramurals</span>
+                <h3>Intramural Pubmat</h3>
+                <p>Publicity material for the school intramurals &mdash; event branding and lineup layout.</p>
+                <div class="tags"><span class="tag mono">Photoshop</span><span class="tag mono">Pubmat</span></div>
+                <p class="note">Sample design from the Intramurals set.</p>
+              </div>
+            </article>
+
+            <article class="slide" data-set="intramurals" data-title="Intramural Post" data-fallback="Add a screenshot of the intramural post">
+              <div class="slide-figure" data-fallback="Add a screenshot of the intramural post">
+                <img src="Intramurals/intramural%20post.png" alt="Intramural event post design" loading="lazy">
+              </div>
+              <div class="slide-body">
+                <span class="idx mono">02 / Intramurals</span>
+                <h3>Intramural Post</h3>
+                <p>Event post for the intramural campaign &mdash; bold type and school colors.</p>
+                <div class="tags"><span class="tag mono">Photoshop</span><span class="tag mono">Post</span></div>
+                <p class="note">Sample design from the Intramurals set.</p>
+              </div>
+            </article>
+
+            <article class="slide" data-set="intramurals" data-title="Intramural Frame" data-fallback="Add a screenshot of the intramural frame">
+              <div class="slide-figure" data-fallback="Add a screenshot of the intramural frame">
+                <img src="Intramurals/intramural%20frame.png" alt="Intramural frame design" loading="lazy">
+              </div>
+              <div class="slide-body">
+                <span class="idx mono">03 / Intramurals</span>
+                <h3>Intramural Frame</h3>
+                <p>Decorative frame for intramural certificates, banners and event graphics.</p>
+                <div class="tags"><span class="tag mono">Illustrator</span><span class="tag mono">Frame</span></div>
+                <p class="note">Sample design from the Intramurals set.</p>
+              </div>
+            </article>
+
+            <article class="slide" data-set="jersey" data-title="Kisaw Himig Jersey" data-fallback="Add a screenshot of the jersey design">
+              <div class="slide-figure" data-fallback="Add a screenshot of the jersey design">
+                <img src="Jersey/Kisawhimig.png" alt="Kisaw Himig jersey design" loading="lazy">
+              </div>
+              <div class="slide-body">
+                <span class="idx mono">01 / Jersey</span>
+                <h3>Kisaw Himig</h3>
+                <p>Jersey design for the Kisaw Himig edition &mdash; front artwork and team layout.</p>
+                <div class="tags"><span class="tag mono">Photoshop</span><span class="tag mono">Apparel</span></div>
+                <p class="note">Sample design from the Jersey set.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+        <div class="slider-ui">
+          <button class="arrow prev" type="button" aria-label="Previous design">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18 9 12l6-6"/></svg>
+          </button>
+          <button class="arrow next" type="button" aria-label="Next design">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>
+          </button>
+          <div class="dots" role="tablist" aria-label="Choose design"></div>
+          <span class="counter mono">01 / 04</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education" class="alt">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">05 &mdash; Education</p>
+      <h2>Where I studied</h2>
+      <div class="split">
+        <div class="panel">
+          <h3>Bachelor of Science in Information Technology</h3>
+          <p class="sub" style="margin-top:8px;font-size:14px">Studied programming, databases, systems analysis, web technologies and multimedia — with a strong interest in the multimedia and design side of computing.</p>
+          <div class="row"><b>Coursework</b><span>Programming fundamentals, OOP, data structures, databases, web development, systems analysis &amp; design</span></div>
+          <div class="row"><b>Academic work</b><span>Enrollment System (C# / WinForms) developed as a course project, including login flow, records management and UI design</span></div>
+          <div class="row"><b>Status</b><span>Graduate — Bachelor of Science in Information Technology (BSIT)</span></div>
+        </div>
+        <div class="panel">
+          <h3>Also part of my routine</h3>
+          <div class="row"><b>Self-study</b><span>Online courses, tutorials and documentation for the tools listed in Skills</span></div>
+          <div class="row"><b>Daily practice</b><span>Small coding exercises in C++, Java and C# to reinforce concepts</span></div>
+          <div class="row"><b>Design work</b><span>Layouts, mockups and visual studies in Illustrator, Photoshop and Canva</span></div>
+          <div class="row"><b>Open to</b><span>Junior developer, entry-level developer, trainee and design-support roles</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="learning">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">06 &mdash; Learning</p>
+      <h2>Continuous learning, on purpose</h2>
+      <p class="sub">Being a fresh graduate means the honest part is that I'm still early. This is the plan I'm following while I look for my first role.</p>
+      <div class="split">
+        <div class="panel">
+          <h3>What I'm focused on now</h3>
+          <div class="row"><b>Foundations</b><span>Strengthening OOP, data structures and clean-code habits in C++ and Java</span></div>
+          <div class="row"><b>Version control</b><span>Proper Git branching and pull-request practice on GitHub</span></div>
+          <div class="row"><b>Web path</b><span>More JavaScript, then a framework, plus PHP and MySQL for CRUD work</span></div>
+        </div>
+        <div class="panel">
+          <h3>How I learn best</h3>
+          <div class="row"><b>Build small</b><span>Ship a small complete thing instead of only watching tutorials</span></div>
+          <div class="row"><b>Break it</b><span>Let it break, read the error, trace it, fix the line — that's where the growth is</span></div>
+          <div class="row"><b>Design check</b><span>Ask whether it looks right, not just whether it runs</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact reveal">
+      <p class="eyebrow" style="justify-content:center">07 &mdash; Contact</p>
+      <h2>Let's talk about a junior or entry-level role</h2>
+      <p>If you're building a team and want someone who is eager, honest about their level, and willing to keep learning — my inbox is open.</p>
+
+      <form class="dm" id="dm" novalidate>
+        <p class="dm-title">Send me a direct message via Gmail</p>
+        <div class="field-row">
+          <div class="field">
+            <label for="dm-name">Your name</label>
+            <input id="dm-name" type="text" placeholder="Your name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="dm-email">Your email</label>
+            <input id="dm-email" type="email" placeholder="you@company.com" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="dm-msg">Message <span class="count mono" id="dm-count">0 / 600</span></label>
+          <textarea id="dm-msg" rows="6" maxlength="600" placeholder="Tell me about the role, your team, or just say hello…" required></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="btn primary" type="submit">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+            Send via Gmail
+          </button>
+          <button class="btn" type="reset">Clear</button>
+        </div>
+        <p class="dm-note">This opens a pre-filled Gmail compose window in a new tab &mdash; nothing is sent or stored by this page.</p>
+      </form>
+
+      <div class="hero-cta">
+        <a class="btn primary" href="mailto:miketancontian2nd@gmail.com">miketancontian2nd@gmail.com</a>
+        <a class="btn" href="https://github.com/prsmke" target="_blank" rel="noopener">github.com/prsmke</a>
+        <button class="btn" type="button" id="copy">Copy email</button>
+      </div>
+
+      <div class="socials">
+        <a class="btn" href="MIKE%20TANCONTIAN.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg>
+          Resume (PDF)
+        </a>
+        <a class="btn" href="https://www.linkedin.com/in/mike-tancontian-9b737637a/?isSelfProfile=true" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+          LinkedIn
+        </a>
+        <a class="btn" href="https://www.facebook.com/mike.tancontian/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <span class="mono">Mike Tancontian &mdash; Fresh BSIT Graduate, Aspiring Software Engineer and Graphic Designer</span>
+    <span class="sp">
+      <a href="MIKE%20TANCONTIAN.pdf" target="_blank" rel="noopener">Resume</a>
+      <a href="https://www.linkedin.com/in/mike-tancontian-9b737637a/?isSelfProfile=true" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.facebook.com/mike.tancontian/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://github.com/prsmke" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:miketancontian2nd@gmail.com">Email</a>
+      <a href="#top">Back to top</a>
+    </span>
+  </div>
+</footer>
+
+<button class="btn totop mono" id="totop" type="button" aria-label="Back to top">^ top</button>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function paintThemeColor() {
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", getComputedStyle(root).getPropertyValue("--bg").trim());
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem("prsmke-theme"); } catch (e) {}
+  if (saved === "dark" || saved === "light") root.setAttribute("data-theme", saved);
+  else if (window.matchMedia("(prefers-color-scheme: light)").matches) root.setAttribute("data-theme", "light");
+  paintThemeColor();
+
+  document.getElementById("theme").addEventListener("click", function () {
+    var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("prsmke-theme", next); } catch (e) {}
+    paintThemeColor();
+  });
+
+  var roles = [
+    "Fresh BSIT Graduate",
+    "Aspiring Software Engineer",
+    "Entry-Level Developer",
+    "Junior Developer",
+    "Continuous Learner"
+  ];
+
+  function rotator() {
+    var el = document.getElementById("rot");
+    if (!el) return;
+    if (reduced) { el.textContent = roles[1]; return; }
+    var i = 0, j = 0, back = false;
+    el.textContent = "";
+    setInterval(function () {
+      var word = roles[i];
+      if (back) {
+        el.textContent = word.slice(0, --j);
+        if (j <= 0) { back = false; i = (i + 1) % roles.length; }
+      } else {
+        el.textContent = word.slice(0, ++j);
+        if (j >= word.length) back = true;
+      }
+    }, 62);
+  }
+
+  function terminal() {
+    var host = document.getElementById("term");
+    if (!host) return;
+    var lines = [
+      { t: "whoami", o: "Fresh BSIT Graduate" },
+      { t: "cat headline.txt", o: "Aspiring Software Engineer and Graphic Designer" },
+      { t: "ls stack/", o: "C++  C#  Java  PHP  HTML  CSS  JavaScript" },
+      { t: "cat mindset.txt", o: "Perseverance + Continuous Learning" }
+    ];
+    if (reduced) {
+      lines.forEach(function (l) {
+        var a = document.createElement("div"); a.className = "ln cmd"; a.textContent = "> " + l.t; host.appendChild(a);
+        var b = document.createElement("div"); b.className = "ln out"; b.textContent = l.o; host.appendChild(b);
+      });
+      return;
+    }
+    var li = 0, ci = 0;
+    var cmdEl = document.createElement("div"); cmdEl.className = "ln cmd";
+    var outEl = document.createElement("div"); outEl.className = "ln out";
+    var cur = document.createElement("span"); cur.className = "cursor";
+
+    function typeCmd() {
+      if (li >= lines.length) { if (cur.parentNode) cur.remove(); return; }
+      var text = lines[li].t;
+      cmdEl.textContent = "> ";
+      cmdEl.appendChild(cur);
+      var k = 0;
+      (function step() {
+        if (k <= text.length) {
+          cmdEl.textContent = "> " + text.slice(0, k);
+          cmdEl.appendChild(cur);
+          k++;
+          setTimeout(step, 42);
+        } else {
+          setTimeout(function () {
+            outEl.textContent = lines[li].o;
+            host.appendChild(outEl);
+            li++;
+            ci++;
+            typeCmd();
+          }, 260);
+        }
+      })();
+    }
+    typeCmd();
+  }
+
+  function marquee() {
+    var host = document.getElementById("mq");
+    if (!host) return;
+    var items = ["C#", "JAVA", "C++", "PHP", "HTML", "CSS", "JAVASCRIPT", "WINFORMS", "SWING", "GIT", "ADOBE ILLUSTRATOR", "PHOTOSHOP", "CANVA"];
+    var html = "";
+    for (var pass = 0; pass < 2; pass++) {
+      items.forEach(function (i) { html += "<span>" + i + "</span>"; });
+    }
+    host.innerHTML = html;
+  }
+
+  rotator();
+  terminal();
+  marquee();
+
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+
+  function initSlider(showcaseEl) {
+    var sliderEl = showcaseEl.querySelector(".slider");
+    var slides = Array.prototype.slice.call(sliderEl.querySelectorAll(".slide"));
+    var cards = Array.prototype.slice.call(showcaseEl.querySelectorAll(".card"));
+    var track = sliderEl.querySelector(".track");
+    var dots = sliderEl.querySelector(".dots");
+    var counter = sliderEl.querySelector(".counter");
+    var index = 0;
+    var timer = null;
+    var dotBtns = [];
+
+    slides.forEach(function (_, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-label", "Item " + (i + 1) + ": " + (slides[i].dataset.title || ""));
+      b.addEventListener("click", function () { go(i); restart(); });
+      dots.appendChild(b);
+      dotBtns.push(b);
+    });
+
+    function go(i) {
+      index = (i + slides.length) % slides.length;
+      track.style.transform = "translateX(-" + index * 100 + "%)";
+      dotBtns.forEach(function (b, j) { b.setAttribute("aria-selected", j === index ? "true" : "false"); });
+      cards.forEach(function (c, j) { c.setAttribute("aria-selected", j === index ? "true" : "false"); });
+      counter.textContent = pad(index + 1) + " / " + pad(slides.length);
+    }
+
+    function restart() {
+      if (timer) clearInterval(timer);
+      if (reduced) return;
+      timer = setInterval(function () { go(index + 1); }, 6200);
+    }
+
+    sliderEl.querySelector(".next").addEventListener("click", function () { go(index + 1); restart(); });
+    sliderEl.querySelector(".prev").addEventListener("click", function () { go(index - 1); restart(); });
+
+    cards.forEach(function (c) {
+      c.addEventListener("click", function () {
+        go(Number(c.dataset.go));
+        restart();
+        showcaseEl.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+      });
+    });
+
+    sliderEl.addEventListener("mouseenter", function () { if (timer) clearInterval(timer); });
+    sliderEl.addEventListener("mouseleave", restart);
+    sliderEl.addEventListener("focusin", function () { if (timer) clearInterval(timer); });
+    sliderEl.addEventListener("focusout", restart);
+
+    sliderEl.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { go(index + 1); restart(); }
+      if (e.key === "ArrowLeft") { go(index - 1); restart(); }
+    });
+
+    var sx = null;
+    sliderEl.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    sliderEl.addEventListener("touchend", function (e) {
+      if (sx === null) return;
+      var dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 46) { go(dx < 0 ? index + 1 : index - 1); restart(); }
+      sx = null;
+    });
+
+    go(0);
+    restart();
+  }
+
+  function initDesignShowcase(showcaseEl) {
+    var sliderEl = showcaseEl.querySelector(".slider");
+    var track = sliderEl.querySelector(".track");
+    var dots = sliderEl.querySelector(".dots");
+    var counter = sliderEl.querySelector(".counter");
+    var tabs = Array.prototype.slice.call(showcaseEl.querySelectorAll(".design-tab"));
+    var allSlides = Array.prototype.slice.call(sliderEl.querySelectorAll(".slide"));
+    var slides = [];
+    var dotBtns = [];
+    var index = 0;
+    var timer = null;
+    var currentSet = tabs.length ? tabs[0].dataset.set : "";
+
+    function buildDots() {
+      dots.innerHTML = "";
+      dotBtns = [];
+      slides.forEach(function (_, i) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.setAttribute("role", "tab");
+        b.setAttribute("aria-label", "Design " + (i + 1) + ": " + (slides[i].dataset.title || ""));
+        b.addEventListener("click", function () { go(i); restart(); });
+        dots.appendChild(b);
+        dotBtns.push(b);
+      });
+    }
+
+    function go(i) {
+      index = (i + slides.length) % slides.length;
+      track.style.transform = "translateX(-" + index * 100 + "%)";
+      dotBtns.forEach(function (b, j) { b.setAttribute("aria-selected", j === index ? "true" : "false"); });
+      counter.textContent = pad(index + 1) + " / " + pad(slides.length);
+    }
+
+    function restart() {
+      if (timer) clearInterval(timer);
+      if (reduced) return;
+      timer = setInterval(function () { go(index + 1); }, 6200);
+    }
+
+    function setSet(name) {
+      currentSet = name;
+      slides = allSlides.filter(function (s) { return s.dataset.set === name; });
+      allSlides.forEach(function (s) { s.classList.toggle("is-hidden", s.dataset.set !== name); });
+      tabs.forEach(function (t) { t.setAttribute("aria-selected", t.dataset.set === name ? "true" : "false"); });
+      index = 0;
+      buildDots();
+      go(0);
+    }
+
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () { setSet(t.dataset.set); restart(); });
+    });
+
+    sliderEl.querySelector(".next").addEventListener("click", function () { go(index + 1); restart(); });
+    sliderEl.querySelector(".prev").addEventListener("click", function () { go(index - 1); restart(); });
+
+    sliderEl.addEventListener("mouseenter", function () { if (timer) clearInterval(timer); });
+    sliderEl.addEventListener("mouseleave", restart);
+    sliderEl.addEventListener("focusin", function () { if (timer) clearInterval(timer); });
+    sliderEl.addEventListener("focusout", restart);
+
+    sliderEl.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { go(index + 1); restart(); }
+      if (e.key === "ArrowLeft") { go(index - 1); restart(); }
+    });
+
+    var sx = null;
+    sliderEl.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; }, { passive: true });
+    sliderEl.addEventListener("touchend", function (e) {
+      if (sx === null) return;
+      var dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 46) { go(dx < 0 ? index + 1 : index - 1); restart(); }
+      sx = null;
+    });
+
+    setSet(currentSet);
+    restart();
+  }
+
+  initSlider(document.getElementById("showcase"));
+  initDesignShowcase(document.getElementById("design-showcase"));
+
+  Array.prototype.forEach.call(document.querySelectorAll(".slide-figure img"), function (img) {
+    img.addEventListener("error", function () {
+      var fig = img.closest(".slide-figure");
+      img.remove();
+      fig.classList.add("placeholder");
+    });
+  });
+
+  if ("IntersectionObserver" in window && !reduced) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function (el) { io.observe(el); });
+  } else {
+    Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function (el) { el.classList.add("in"); });
+  }
+
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.links a'));
+  var sections = links.map(function (a) { return document.querySelector(a.getAttribute("href")); });
+  if ("IntersectionObserver" in window) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a, i) {
+          if (sections[i] === en.target) a.classList.add("active");
+          else a.classList.remove("active");
+        });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    sections.forEach(function (s) { if (s) spy.observe(s); });
+  }
+
+  var totop = document.getElementById("totop");
+  window.addEventListener("scroll", function () {
+    totop.classList.toggle("on", window.scrollY > 600);
+  }, { passive: true });
+  totop.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" }); });
+
+  var copyBtn = document.getElementById("copy");
+  copyBtn.addEventListener("click", function () {
+    var mail = "miketancontian2nd@gmail.com";
+    var done = function () {
+      copyBtn.textContent = "Copied";
+      setTimeout(function () { copyBtn.textContent = "Copy email"; }, 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(mail).then(done, function () {});
+    } else {
+      var ta = document.createElement("textarea");
+      ta.value = mail; document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); done(); } catch (e) {}
+      ta.remove();
+    }
+  });
+
+  var dmForm = document.getElementById("dm");
+  var dmMsg = document.getElementById("dm-msg");
+  var dmCount = document.getElementById("dm-count");
+  if (dmForm && dmMsg && dmCount) {
+    var paintCount = function () { dmCount.textContent = dmMsg.value.length + " / 600"; };
+    dmMsg.addEventListener("input", paintCount);
+    dmForm.addEventListener("reset", function () { setTimeout(paintCount, 0); });
+    dmForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!dmForm.checkValidity()) { dmForm.reportValidity(); return; }
+      var name = document.getElementById("dm-name").value.trim();
+      var email = document.getElementById("dm-email").value.trim();
+      var message = dmMsg.value.trim();
+      var body = "Name: " + name + "\nEmail: " + email + "\n\n" + message + "\n\n— Sent from Mike Tancontian's portfolio";
+      var url = "https://mail.google.com/mail/?view=cm&fs=1"
+        + "&to=" + encodeURIComponent("miketancontian2nd@gmail.com")
+        + "&su=" + encodeURIComponent("Portfolio message from " + name)
+        + "&body=" + encodeURIComponent(body);
+      window.open(url, "_blank", "noopener");
+    });
+  }
+})();
+</script>
+</body>
+</html>
